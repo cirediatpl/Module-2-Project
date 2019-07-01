@@ -2,6 +2,7 @@ class GroupsController < ApplicationController
 
     def index
         @groups = Group.all
+        @quizzes = Quiz.all
     end
 
     def show
