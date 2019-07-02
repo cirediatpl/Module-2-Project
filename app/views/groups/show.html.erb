@@ -10,12 +10,33 @@
             <% end %>
         </ul>
     </li>
+    <li> Posts:
+        <ul>
+            <% @group.posts.each do |p| %>
+                <br><%= link_to p.title, post_path(p) %></br>
+            <% end %>
+        </ul>
+    </li>
 </ul>
 
-<h3>Join Group</h3>
 
-<%= form_for @group.usergroups.build do |f| %>
-  <%= f.hidden_field :user_id, value: current_user.id %>
-  <%= f.hidden_field :group_id %>
-  <%= f.submit "Join Group" %>
+<% if !current_user.groups.include?(@group) %>
+<h3>Join Group</h3>
+    <%= form_for @group.usergroups.build do |f| %>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+        <%= f.hidden_field :group_id %>
+        <%= f.submit "Join Group" %>
+    <% end %>
+<% else %>
+
+
+<h3>Create New Post</h3>
+    <%= form_for @post do |p| %>
+        <%= p.hidden_field :user_id, value: current_user.id %>
+        <%= p.hidden_field :group_id, value: @group.id %>
+        <br> Title: <%= p.text_field :title %></br>
+        <br> Content: <%= p.text_area :content %></br>
+        <%= p.hidden_field :author, value: current_user.username %> </br>
+        <br><%= p.submit %> </br>
+    <% end %>
 <% end %>

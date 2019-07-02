@@ -1,0 +1,13 @@
+<h1> <%= @post.group.name %> - <%= @post.title %> </h1>
+<p> <%= @post.content %> </p>
+<% if current_user.username == @post.author %>
+    <li> Written By: You </li>
+    <%# Edit Post %>
+    <h3> <%= link_to "Edit Post", "/posts/#{@post.id}/edit" %> </h3>
+    <%# Delete Post %>
+    <%= form_tag post_path(@post.id), method: "delete" do %>
+        <%= submit_tag "Delete #{@post.title}" %>
+    <% end %>
+<% else %>
+    <li> Written By: <%= @post.author %> </li>
+<% end %>
