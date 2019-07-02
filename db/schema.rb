@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_01_191206) do
+ActiveRecord::Schema.define(version: 2019_07_02_145725) do
 
   create_table "groups", force: :cascade do |t|
     t.string "name"
@@ -23,10 +23,27 @@ ActiveRecord::Schema.define(version: 2019_07_01_191206) do
     t.index ["quiz_id"], name: "index_groups_on_quiz_id"
   end
 
+  create_table "posts", force: :cascade do |t|
+    t.string "title"
+    t.string "content"
+    t.boolean "edit_status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "quizzes", force: :cascade do |t|
     t.string "quiz_url"
     t.string "quiz_website"
     t.integer "results_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reacts", force: :cascade do |t|
+    t.string "user_id"
+    t.string "post_id"
+    t.string "type"
+    t.string "completion"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
