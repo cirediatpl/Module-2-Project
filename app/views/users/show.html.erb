@@ -1,0 +1,19 @@
+<h1> <%= @user.first_name + " " + @user.last_name %></h1>
+<ul> 
+    <li> Username: <%= @user.username %> </li>
+    <li> Email: <%= @user.email %> </li>
+    <li> Groups:
+        <ul>
+            <% @user.groups.each do |g| %>
+                <li> <%= link_to g.name, group_path(g) %> </li>
+            <% end %>
+        </ul>
+    </li>
+    <li> Take a Quiz:
+        <ul>
+            <% @quizzes.each do |q| %>
+                <li> <%= link_to q.quiz_website, quiz_path(q) %> </li>
+            <% end %>
+        </ul>
+    </li>
+</ul>

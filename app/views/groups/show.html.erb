@@ -1,0 +1,13 @@
+<h1> <%= @group.name %> </h1>
+<ul>
+    <li> Bio: <%= @group.biography %> </li>
+    <li> Discord: <%= @group.discord_url %> </li>
+    <li> Facebook: <%= @group.facebook_group_url %> </li>
+    <li> Users:
+        <ul>
+            <% @group.users.each do |u| %>
+                <%= link_to u.username, user_path(u) %>
+            <% end %>
+        </ul>
+    </li>
+</ul>
