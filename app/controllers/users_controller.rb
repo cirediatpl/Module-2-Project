@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 
     def show
         find_user
+        @quizzes = Quiz.all
     end
 
     def new
@@ -11,9 +12,10 @@ class UsersController < ApplicationController
     end
 
     def create
+        byebug
         @user = User.create(user_params)
         if @user.valid?
-          sessions[:user_id] = @user.id
+          session[:user_id] = @user.id
           redirect_to user_path(@user)
         else
           flash[:error] = @user.errors.full_messages
@@ -44,7 +46,7 @@ class UsersController < ApplicationController
     end
 
     def user_params
-        params.require[:user].permit[:username, :first_name, :last_name, :email, :id, :group_id, :pasword, :password_digest]
+        params.require(:user).permit(:username, :first_name, :last_name, :email, :id, :group_id, :password, :password_confirmation, :password_digest)
     end
 
 end
