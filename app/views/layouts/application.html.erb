@@ -3,13 +3,36 @@
   <head>
     <title>RailsProject</title>
     <%= csrf_meta_tags %>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
     <%= csp_meta_tag %>
 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+  <div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <% if logged_in? %>
+        <%= link_to "User Page", user_path(current_user.id) %>
+      <% end %>
+    </div>
+    <div class="col-sm">
+      <%= link_to "Groups Page", groups_path %>
+    </div>
+    <div class="col-sm">
+      <%= form_tag logout_path, method: "delete" do %>
+        <%= submit_tag "Logout" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
     <%= yield %>
   </body>
 </html>
