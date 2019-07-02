@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(version: 2019_07_01_191206) do
 
   create_table "groups", force: :cascade do |t|
     t.string "name"
-    t.string "biography"
+    t.string "bio"
     t.string "discord_url"
     t.string "facebook_group_url"
     t.integer "quiz_id"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2019_07_01_191206) do
   end
 
   create_table "quizzes", force: :cascade do |t|
+    t.string "name"
     t.string "quiz_url"
     t.string "quiz_website"
     t.integer "results_number"
