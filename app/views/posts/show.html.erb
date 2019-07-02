@@ -9,5 +9,16 @@
         <%= submit_tag "Delete #{@post.title}" %>
     <% end %>
 <% else %>
-    <li> Written By: <%= @post.author %> </li>
+    <li> Written By: <%= @post.author %> </li> 
+    <h3>React</h3>
+    <%= form_for @post.reacts.build do |f| %>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+        <%= f.hidden_field :post_id, value: @post.id %>
+        <%= f.submit "Like" %>
+    <% end %>
+    <% if @post.reacts != nil %>
+        <% @post.reacts.each do |p| %>
+            <br><%= "A person reacted to this" %><br>
+        <% end %>
+    <% end %>
 <% end %>
