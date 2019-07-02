@@ -12,7 +12,7 @@
     <li> Take a Quiz:
         <ul>
             <% @quizzes.each do |q| %>
-                <li> <%= link_to q.quiz_website, quiz_path(q) %> </li>
+                <li> <%= link_to q.name, quiz_path(q) %> </li>
             <% end %>
         </ul>
     </li>

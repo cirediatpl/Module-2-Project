@@ -1,6 +1,6 @@
 <h1> <%= @group.name %> </h1>
 <ul>
-    <li> Bio: <%= @group.biography %> </li>
+    <li> Bio: <%= @group.bio %> </li>
     <li> Discord: <%= @group.discord_url %> </li>
     <li> Facebook: <%= @group.facebook_group_url %> </li>
     <li> Users:
@@ -11,3 +11,11 @@
         </ul>
     </li>
 </ul>
+
+<h3>Join Group</h3>
+
+<%= form_for @group.usergroups.build do |f| %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.hidden_field :group_id %>
+  <%= f.submit "Join Group" %>
+<% end %>
