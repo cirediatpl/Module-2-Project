@@ -7,6 +7,7 @@ class GroupsController < ApplicationController
 
     def show
         find_group
+        @post = Post.new
     end
 
     def create
@@ -20,7 +21,7 @@ class GroupsController < ApplicationController
     end
 
     def group_params
-        params.require[:group].permit[:name, :bio, :quiz_id]
+        params.require(:group).permit(:name, :bio, :quiz_id, post_ids:[])
     end
 
 end

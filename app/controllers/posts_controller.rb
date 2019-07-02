@@ -22,6 +22,14 @@ class PostsController < ApplicationController
         find_post
     end
 
+    def destroy
+        find_post
+        @group = @post.group
+        @post.delete
+        @post.save
+        redirect_to "/groups/#{@group.id}"
+    end
+
     private
 
     def find_post
@@ -29,7 +37,7 @@ class PostsController < ApplicationController
     end
 
     def post_params
-        params.require(:post).permit(:title, :content, :edit_status)
+        params.require(:post).permit(:title, :content, :edit_status, :author, :group_id)
     end
 
 end

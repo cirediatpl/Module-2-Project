@@ -1,0 +1,9 @@
+<h3> Edit Post</h3>
+<%= form_for @post do |p| %>
+    <%= p.hidden_field :user_id, value: current_user.id %>
+    <%= p.hidden_field :group_id, value: @post.group_id %>
+    <br> Title: <%= p.text_field :title, value: @post.title %></br>
+    <br> Content: <%= p.text_area :content, value: @post.content %></br>
+    <%= p.hidden_field :author, value: current_user.username %> </br>
+    <br><%= p.submit %> </br>
+<% end %>
