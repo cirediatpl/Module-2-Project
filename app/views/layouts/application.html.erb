@@ -20,14 +20,18 @@
     <div class="col-sm">
       <% if logged_in? %>
         <%= link_to "User Page", user_path(current_user.id) %>
+      <% elsif "/signup" %>
+        <%= link_to "Login Page", "/login"%>
       <% end %>
     </div>
     <div class="col-sm">
       <%= link_to "Groups Page", groups_path %>
     </div>
     <div class="col-sm">
+      <% if logged_in? %>
       <%= form_tag logout_path, method: "delete" do %>
         <%= submit_tag "Logout" %>
+      <% end %>
       <% end %>
     </div>
   </div>

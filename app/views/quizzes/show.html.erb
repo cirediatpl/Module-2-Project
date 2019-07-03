@@ -1,6 +1,8 @@
 <h1> <%= @quiz.name %> </h1>
 <p> <%= link_to @quiz.quiz_url, @quiz.quiz_url %> </p>
-<%# form_tag group_path(@quiz.group) do %>
-    <br> Result: <%# text_field_tag :name %> </br>
-    <br> <%# submit_tag 'submit' %> </br>
-<%# end %>
+<%= form_tag "/usergroups", method: "create" do %>
+    <%= hidden_field_tag 'usergroup[user_id]', current_user.id %>
+    <br> Result: <%= collection_select :usergroup, :group_id, @quiz.groups, :id,  :name %>
+    <%= submit_tag 'Go to Page' %> </br>
+<% end %>
+

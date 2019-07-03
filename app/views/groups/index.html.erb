@@ -4,6 +4,10 @@
     <h2> <%= q.name %> </h2>
     <%# Groups Based on Quiz Result %>
     <% q.groups.each do |g| %>
-       <li> <%= link_to g.name, group_path(g) %> </li>
+        <% if logged_in? %>
+            <li> <%= link_to g.name, group_path(g) %> </li>
+        <% else %>
+            <li> <%= link_to g.name, "/login" %> </li>
+        <% end %>
     <% end %>
 <% end %> 
