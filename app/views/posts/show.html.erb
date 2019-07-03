@@ -16,9 +16,5 @@
         <%= f.hidden_field :post_id, value: @post.id %>
         <%= f.submit "Like" %>
     <% end %>
-    <% if @post.reacts != nil %>
-        <% @post.reacts.each do |p| %>
-            <br><%= "A person reacted to this" %><br>
-        <% end %>
-    <% end %>
+    <%= "#{@post.reacts.count} likes" %>
 <% end %>

@@ -13,7 +13,7 @@
     <li> Posts:
         <ul>
             <% @group.posts.each do |p| %>
-                <br><%= link_to p.title, post_path(p) %></br>
+                <br><%= link_to p.title + " - " + p.content , post_path(p) %></br>
             <% end %>
         </ul>
     </li>
