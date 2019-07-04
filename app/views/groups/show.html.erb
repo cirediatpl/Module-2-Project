@@ -20,16 +20,7 @@
 </ul>
 
 
-<% if !current_user.groups.include?(@group) %>
-<h3>Join Group</h3>
-    <%= form_for @group.usergroups.build do |f| %>
-        <%= f.hidden_field :user_id, value: current_user.id %>
-        <%= f.hidden_field :group_id %>
-        <%= f.submit "Join Group" %>
-    <% end %>
-<% else %>
-
-
+<% if current_user.groups.include?(@group) %>
 <h3>Create New Post</h3>
     <%= form_for @post do |p| %>
         <%= p.hidden_field :user_id, value: current_user.id %>
@@ -39,4 +30,6 @@
         <%= p.hidden_field :author, value: current_user.username %> </br>
         <br><%= p.submit %> </br>
     <% end %>
+<% else %>
+    You are not currently in this group
 <% end %>
